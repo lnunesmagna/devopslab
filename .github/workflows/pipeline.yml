@@ -22,10 +22,10 @@ jobs:
           python-version: '3.7.11'
 
       - name: Install Requirements
-        run:  pip install flask flask-wtf tox #adicionado tox
-		
-	    - name: Run tox #Duas linhas adicionado do SONARCLOUD (DESAFIO)
-	      run: tox -e py
+        run:  pip install flask flask-wtf tox
+
+      - name: Run tox #Duas linhas adicionado do SONARCLOUD (DESAFIO)
+        run: tox -e py
               
       - name: Unit Test
         run: python -m unittest -v test
