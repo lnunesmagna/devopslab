@@ -6,7 +6,7 @@ on:
   push:
     branches:
       - main
-  pull_request: #adicionado do codigo do SONARCLOUD
+  pull_request:
     types: [opened, synchronize, reopened]
 
 jobs:
@@ -20,14 +20,12 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.10'
-            
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pylint pytest pytest-cov selenium playwright
-      - name: Running pytest
-        run: |
-          pytest -v  --cov=. --cov-report=xml --cov-report=html
+
+      - name: Install Requirements
+        run:  pip install flask flask-wtf tox
+		
+	  - name Run tox
+	    run: tox -e py
               
       - name: Unit Test
         run: python -m unittest -v test
@@ -72,4 +70,4 @@ jobs:
 
       # Enviando o código da App para o Heroku fazer Deploy
       - name: Push to Heroku & Deploy
-        run: git push heroku HEAD:main --force
+        run: git push he
