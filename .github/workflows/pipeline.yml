@@ -24,7 +24,7 @@ jobs:
       - name: Install Requirements
         run:  pip install flask flask-wtf tox
 		
-	    - name Run tox
+	    - name: Run tox
 	      run: tox -e py
               
       - name: Unit Test
