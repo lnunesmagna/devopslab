@@ -27,7 +27,7 @@ jobs:
         pip install pylint pytest pytest-cov selenium playwright flask flask-wtf
     - name: Running pytest
       run: |
-        pytest --cov --cov-report=xml    
+        pytest --cov=. --cov-report=xml    
     - name: Unit Test
       run: python -m unittest -v test
     - name: SonarCloud Scan
