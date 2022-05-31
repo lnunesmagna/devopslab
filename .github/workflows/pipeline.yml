@@ -27,7 +27,7 @@ jobs:
         pip install pylint pytest pytest-cov selenium playwright flask flask-wtf
     - name: Running pytest
       run: |
-        pytest -v  --cov=./ --cov-report=xml --cov-report=html
+        pytest -vv  --cov=. --cov-report=xml
     - name: Analysing the code with pylint
       continue-on-error: true
       run: |
