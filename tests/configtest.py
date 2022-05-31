@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from app import app
 import unittest
+import pytest
+import sys
 
 class Test(unittest.TestCase):
     def setUp(self):

@@ -1,33 +1,30 @@
 # Nome do Workflow
 name: DevOpsLab Pipeline
 
-on: 
-  push:
-    branches:
-      - main
-  pull_request: #adicionado do codigo do SONARCLOUD
-    types: [opened, synchronize, reopened]
-jobs:
-  build:
+on:
+  - push
+  - pull_request
 
-    runs-on: ubuntu-latest
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ['3.6', '3.7', '3.8', '3.9']
 
     steps:
     - uses: actions/checkout@v2
-      with:
-        fetch-depth: 100
-
-    - name: Set up Python 3.10
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
-        python-version: '3.10'
+        python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pylint pytest pytest-cov selenium playwright flask flask-wtf
-    - name: Running pytest
-      run: |
-        pytest --cov=. --cov-report=xml    
+        pip install tox tox-gh-actions flask flask-wtf
+    - name: Test with tox
+      run: tox   
     - name: Unit Test
       run: python -m unittest -v test
     - name: SonarCloud Scan
