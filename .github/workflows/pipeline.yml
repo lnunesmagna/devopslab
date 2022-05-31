@@ -23,7 +23,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install tox tox-gh-actions flask flask-wtf
     - name: Test with tox
-      run: tox -e py
+      run: tox
     - name: Unit Test
       run: python -m unittest -v test
     - name: SonarCloud Scan
