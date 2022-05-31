@@ -27,11 +27,7 @@ jobs:
         pip install pylint pytest pytest-cov selenium playwright flask flask-wtf
     - name: Running pytest
       run: |
-        pytest -vv  --cov=. --cov-report=xml
-    - name: Analysing the code with pylint
-      continue-on-error: true
-      run: |
-        pylint src/git_graph_automation
+        pytest --cov=./src --cov-report=xml    
     - name: Unit Test
       run: python -m unittest -v test
     - name: SonarCloud Scan
