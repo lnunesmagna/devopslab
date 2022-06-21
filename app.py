@@ -10,4 +10,6 @@ def pagina_inicial():
     return "Grupo 3 - MBA FIAP - Arquitetura de Soluções"
 
 if __name__ == '__main__':
-    app.run()
+    #app.run()
+    port = os.getenv('PORT')
+    app.run('0.0.0.0', port=port)
